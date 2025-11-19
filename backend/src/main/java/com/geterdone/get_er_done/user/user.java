@@ -1,10 +1,4 @@
-// ===== SAMPLE FILE: User.java =====
-// This is ONLY an example entity to show how JPA works.
-// You can delete or rename this for your real project.
-
-package com.geterdone.get_er_done.user;
-
-import jakarta.persistence.Column;
+package com.geterdone.get_er_done.user;import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
