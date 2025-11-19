@@ -8,7 +8,10 @@ function App() {
   
   const addTask = (task) => {
     if(task.trim() === "") return;
-    setTasks ([...tasks, task]);
+    fetch("http://localhost:8080/api/hello")
+      .then(res => res.text())
+      .then(data => setTasks([...tasks, data]));
+    //setTasks ([...tasks, task]);
   };
 
   const removeTask = (index) => {
