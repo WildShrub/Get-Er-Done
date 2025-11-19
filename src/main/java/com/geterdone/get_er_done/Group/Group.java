@@ -1,9 +1,5 @@
-package com.geterdone.get_er_done.Group;
-// ===== SAMPLE FILE: ExampleUser.java =====
-// This is ONLY an example entity to show how JPA works.
-// You can delete or rename this for your real project.
 
-package com.geterdone.get_er_done.Group;
+package com.geterdone.get_er_done.Group.Group.java;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,24 +25,16 @@ public class Group {
 
     //Constructers:
 
-    public ExampleUser() {
+    public Group() {
         // No-arg constructor required by JPA
     }
 
-    public Task(String GroupName, Boolean completeGroupTask) {
+    public Group(String GroupName, Boolean completeGroupTask) {
         this.GroupName = GroupName;
         this.completeGroupTask = completeGroupTask;
     }
 
     //Getters and Setters:
-
-    public Long getTaskId() {
-        return id;
-    }
-
-    public void setTaskId(Long id) {
-        this.id = id;
-    }
 
     public String getGroupName() {
         return GroupName;
@@ -60,27 +48,10 @@ public class Group {
         return completeGroupTask;
     }
 
-    public int getPriorityTask() {
-        return Priority();
-    }
+    //Username List JSON
 
-    public void setPriorityTask(int Priority) {
-        this.Priority = Priority;
-    }
+    //Group Task List JSON
 
-    public int getDueDateTask() {
-        return DueDate();
-    }
+    //Group Schedule JSON
 
-    public void setDueDateTask(int DueDate) {
-        this.DueDate = DueDate;
-    }
-
-    public int parentTaskID() {
-        return ParentTaskID();
-    }
-
-    public void setParentTaskID(int ParentTaskID) {
-        this.ParentTaskID = ParentTaskID;
-    }
 }
