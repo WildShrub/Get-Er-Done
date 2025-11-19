@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Er Done API Test</title>
+</head>
+<body>
+    <h1>Get Er Done API Test</h1>
+
+    <!-- GET Request -->
+    <button id="getHelloBtn">Call GET /api/hello</button>
+    <p id="getHelloResult"></p>
+
+    <!-- POST Request -->
+    <input type="text" id="messageInput" placeholder="Type a message" />
+    <button id="postMessageBtn">Call POST /api/message</button>
+    <p id="postMessageResult"></p>
+
+    <script>
+        const baseUrl = 'http://localhost:8080/api';
+
+        // GET /api/hello
+        document.getElementById('getHelloBtn').addEventListener('click', () => {
+            fetch(`${baseUrl}/hello`)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('getHelloResult').innerText = text;
+                })
+                .catch(err => {
+                    document.getElementById('getHelloResult').innerText = 'Error: ' + err;
+                });
+        });
+
+        // POST /api/message
+        document.getElementById('postMessageBtn').addEventListener('click', () => {
+            const message = document.getElementById('messageInput').value;
+            fetch(`${baseUrl}/message`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: message
+            })
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('postMessageResult').innerText = text;
+                })
+                .catch(err => {
+                    document.getElementById('postMessageResult').innerText = 'Error: ' + err;
+                });
+        });
+    </script>
+</body>
+</html>
