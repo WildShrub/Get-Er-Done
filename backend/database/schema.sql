@@ -3,27 +3,49 @@ CREATE TABLE userSchedules (
     userSchedule JSON
 );
 
-CREATE TABLE userSchedules (
+CREATE TABLE userTasklist (
     username VARCHAR(50) PRIMARY KEY NOT NULL,
-    userSchedule JSON
+    userTasklist JSON
 );
 
-CREATE TABLE userSchedules (
+CREATE TABLE userProfile (
     username VARCHAR(50) PRIMARY KEY NOT NULL,
-    userSchedule JSON
+    email VARCHAR(100) NOT NULL,
+    profile picture BYTEA
 );
 
-CREATE TABLE userSchedules (
+CREATE TABLE userGroup (
     username VARCHAR(50) PRIMARY KEY NOT NULL,
-    userSchedule JSON
+    groupIDList JSON
 );
 
-CREATE TABLE userSchedules (
+CREATE TABLE userLogin (
     username VARCHAR(50) PRIMARY KEY NOT NULL,
-    userSchedule JSON
+    passwordHash VARCHAR(256) NOT NULL
 );
 
-CREATE TABLE userSchedules (
-    username VARCHAR(50) PRIMARY KEY NOT NULL,
-    userSchedule JSON
+CREATE TABLE groupTasklists (
+    groupID VARCHAR(50) PRIMARY KEY NOT NULL,
+    groupTasklist JSON
+);
+
+CREATE TABLE groupSchedules (
+    groupID VARCHAR(50) PRIMARY KEY NOT NULL,
+    groupSchedule JSON
+);
+
+CREATE TABLE groupProfile (
+    groupID VARCHAR(50) PRIMARY KEY NOT NULL,
+    groupName VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE groupUsers (
+    groupID VARCHAR(50) PRIMARY KEY NOT NULL,
+    usersAndPermissions JSON
+);
+
+CREATE TABLE notifications (
+    notificationKey VARCHAR(100) PRIMARY KEY NOT NULL,
+    setTime TIMESTAMP NOT NULL,
+    email VARCHAR(100) NOT NULL,
 );

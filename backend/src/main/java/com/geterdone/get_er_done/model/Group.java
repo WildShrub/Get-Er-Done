@@ -1,6 +1,4 @@
-
-package com.geterdone.get_er_done.Group.Group.java;
-
+package com.geterdone.get_er_done.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +33,7 @@ public class Group {
     }
 
     //Getters and Setters:
-
+    
     public String getGroupName() {
         return GroupName;
     }

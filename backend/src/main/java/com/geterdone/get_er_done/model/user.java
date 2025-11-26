@@ -1,4 +1,5 @@
-package com.geterdone.get_er_done.user;import jakarta.persistence.Column;
+package com.geterdone.get_er_done.model;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

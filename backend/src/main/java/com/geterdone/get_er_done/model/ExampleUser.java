@@ -2,7 +2,7 @@
 // This is ONLY an example entity to show how JPA works.
 // You can delete or rename this for your real project.
 
-package com.geterdone.get_er_done.example.model;
+package com.geterdone.get_er_done.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
