@@ -1,13 +1,13 @@
 package com.geterdone.get_er_done.model;
 
-public class UserSchedule {
+public class UserLogin {
 
     private String username;
     private String password;
 
     public UserLogin() {}
 
-    public UserLogin(String username, String password) {
+    public UserLogin(String username, String password) {        //maybe should be private?
         this.username = username;
         this.password = password;
     }
@@ -20,11 +20,11 @@ public class UserSchedule {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getPassword() {       //this will be returning a password hash
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password) {  //this needs to hash the password that is sent to the system.
         this.password = password;
     }
 }

@@ -2,7 +2,7 @@ package com.geterdone.get_er_done.controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/api/user/task")
 public class UserTaskController {
 
     private final UserTaskService service;
@@ -11,12 +11,12 @@ public class UserTaskController {
         this.service = service;
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/get/{username}")
     public UserTask getTask(@PathVariable String username) {
         return service.getUserTask(username);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public void createTask(@RequestBody UserTask task) {
         service.createUserTask(task);
     }

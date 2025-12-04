@@ -16,7 +16,7 @@ public class UserLoginController {
         return service.getUserLogin(username);
     }
 
-    @PostMapping("/{username}")
+    @PostMapping("/createUser")         //why does this have a username as a parameter like that? shouldn't it just be in the request body?
     public void createLogin(@RequestBody UserLogin login) {
         service.createUserLogin(login);
     }
