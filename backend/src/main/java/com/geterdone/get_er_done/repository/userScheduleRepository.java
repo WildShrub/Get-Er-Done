@@ -1,29 +1,34 @@
 package com.geterdone.get_er_done.repository;
 
-import com.geterdone.get_er_done.model.userSchedule;
+import com.geterdone.get_er_done.model.UserSchedule;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class UserScheduleRepository {
 
-    private final JdbcTemplate jdbc;
+    @Autowired
+    private JdbcTemplate jdbc;
 
-    public UserScheduleRepository(JdbcTemplate jdbc) {
-        this.jdbc = jdbc;
+    public UserSchedule get(String username) {
+        String sql = "SELECT * FROM userSchedules WHERE username = ?";
+
+        return jdbc.queryForObject(sql, new Object[]{username}, (rs, rowNum) ->
+            new UserSchedule(
+                rs.getString("username"),
+                rs.getString("userSchedule")
+            )
+        );
     }
 
-    public List<userSchedule> getUserSchedulesByUserId(int userId) {
-        String sql = "SELECT * FROM user_schedules WHERE user_id = ?";
-        return jdbc.query(sql, new Object[]{userId}, (rs, rowNum) -> {
-            userSchedule schedule = new userSchedule();
-            schedule.setId(rs.getInt("id"));
-            schedule.setUserId(rs.getInt("user_id"));
-            schedule.setScheduleData(rs.getString("schedule_data"));
-            // Map other fields as necessary
-            return schedule;
-        });
+    public void save(UserSchedule schedule) {
+        String sql = """
+            INSERT INTO userSchedules (username, userSchedule)
+            VALUES (?, ?)
+            ON DUPLICATE KEY UPDATE userSchedule = VALUES(userSchedule)
+        """;
+
+        jdbc.update(sql, schedule.getUsername(), schedule.getUserScheduleJson());
     }
 }
