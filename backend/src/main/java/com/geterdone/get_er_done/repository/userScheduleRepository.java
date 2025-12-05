@@ -1,24 +1,29 @@
 package com.geterdone.get_er_done.repository;
 
-import com.geterdone.get_er_done.model.UserSchedule;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.geterdone.get_er_done.model.UserSchedule;
 
 @Repository
 public class UserScheduleRepository {
 
-    @Autowired
-    private JdbcTemplate jdbc;
+    private final JdbcTemplate jdbc;
 
-    public UserSchedule get(String username) {
-        String sql = "SELECT * FROM userSchedules WHERE username = ?";
+    public UserScheduleRepository(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+    }
 
-        return jdbc.queryForObject(sql, new Object[]{username}, (rs, rowNum) ->
-            new UserSchedule(
+    public UserSchedule findByUsername(String username) {
+        String sql = "SELECT username, userSchedule FROM userSchedules WHERE username = ?";
+
+        return jdbc.queryForObject(
+            sql,
+            (rs, rowNum) -> new UserSchedule(
                 rs.getString("username"),
                 rs.getString("userSchedule")
-            )
+            ),
+            username
         );
     }
 
