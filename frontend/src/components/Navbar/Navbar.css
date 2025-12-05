@@ -1,0 +1,70 @@
+.Navbar {
+  width: 150px;
+  float: left;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  margin-right: 10px;
+  width: 230px;
+  height: 1041px;
+  background: #D9D9D9;
+}
+
+.Navbar li {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-button {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 44px;
+    background: #A4A4A4;
+    margin-top: 14px;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.todo-button {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 44px;
+    background: #A4A4A4;
+    margin: 14px;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.timeblock-button {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 44px;
+    background: #A4A4A4;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
