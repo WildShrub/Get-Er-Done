@@ -4,6 +4,8 @@ public class UserSchedule {
     private String username;
     private String userScheduleJson;
 
+    public UserSchedule() {}
+
     public UserSchedule(String username, String userScheduleJson) {
         this.username = username;
         this.userScheduleJson = userScheduleJson;
