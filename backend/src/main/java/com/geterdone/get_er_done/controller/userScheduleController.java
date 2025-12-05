@@ -1,6 +1,5 @@
 package com.geterdone.get_er_done.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,19 +11,24 @@ import com.geterdone.get_er_done.model.UserSchedule;
 import com.geterdone.get_er_done.service.UserScheduleService;
 
 @RestController
-@RequestMapping("/api/user/schedule")
+@RequestMapping("/api/schedule")
 public class UserScheduleController {
 
-    @Autowired
-    private UserScheduleService service;
+    private final UserScheduleService service;
 
-    @GetMapping("/{username}")
-    public UserSchedule getSchedule(@PathVariable String username) {
-        return service.getSchedule(username);
+    public UserScheduleController(UserScheduleService service) {
+        this.service = service;
     }
 
-    @PostMapping("/{username}")
-    public void updateSchedule(@PathVariable String username, @RequestBody String json) {
-        service.updateSchedule(username, json);
+    // Fetch user schedule
+    @GetMapping("/{username}")
+    public UserSchedule getSchedule(@PathVariable String username) {
+        return service.getUserSchedule(username);
+    }
+
+    // Create/update schedule
+    @PostMapping("/save")
+    public void saveSchedule(@RequestBody UserSchedule schedule) {
+        service.saveUserSchedule(schedule);
     }
 }
