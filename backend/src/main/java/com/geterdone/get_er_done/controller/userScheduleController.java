@@ -11,7 +11,7 @@ import com.geterdone.get_er_done.model.UserSchedule;
 import com.geterdone.get_er_done.service.UserScheduleService;
 
 @RestController
-@RequestMapping("/api/schedule")
+@RequestMapping("/api/user/schedule")
 public class UserScheduleController {
 
     private final UserScheduleService service;

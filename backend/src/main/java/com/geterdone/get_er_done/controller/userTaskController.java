@@ -11,7 +11,7 @@ import com.geterdone.get_er_done.model.UserTask;
 import com.geterdone.get_er_done.service.UserTaskService;
 
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/api/user/tasks")
 public class UserTaskController {
 
     private final UserTaskService service;
