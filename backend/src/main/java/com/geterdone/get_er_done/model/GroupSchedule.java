@@ -4,6 +4,8 @@ public class GroupSchedule {
     private String groupID;
     private String groupScheduleJson;
 
+    public GroupSchedule() {}
+    
     public GroupSchedule(String groupID, String groupScheduleJson) {
         this.groupID = groupID;
         this.groupScheduleJson = groupScheduleJson; 
