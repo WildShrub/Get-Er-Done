@@ -49,3 +49,5 @@ CREATE TABLE notifications (
     setTime TIMESTAMP NOT NULL,
     email VARCHAR(100) NOT NULL,
 );
+
+CREATE INDEX idxTimeStamp ON notifications (timeStamp);
