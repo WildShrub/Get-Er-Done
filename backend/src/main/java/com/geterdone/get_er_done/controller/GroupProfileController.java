@@ -34,6 +34,6 @@ public class GroupProfileController {
 
     @PostMapping("/rename")
     public void renameGroupProfile(@RequestBody GroupProfile groupProfile) {
-        service.renameGroupProfile(groupProfile);
+        service.saveGroupProfile(groupProfile);
     }
 }
