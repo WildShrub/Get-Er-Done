@@ -1,8 +1,9 @@
 package com.geterdone.get_er_done.service;
 
+import org.springframework.stereotype.Service;
+
 import com.geterdone.get_er_done.model.UserTask;
 import com.geterdone.get_er_done.repository.UserTaskRepository;
-import org.springframework.stereotype.Service;
 
 @Service
 public class UserTaskService {

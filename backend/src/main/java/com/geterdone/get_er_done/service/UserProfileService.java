@@ -1,0 +1,24 @@
+package com.geterdone.get_er_done.service;
+
+import org.springframework.stereotype.Service;
+
+import com.geterdone.get_er_done.model.UserProfile;
+import com.geterdone.get_er_done.repository.UserProfileRepository;
+
+@Service
+public class UserProfileService {
+
+    private final UserProfileRepository repository;
+
+    public UserProfileService(UserProfileRepository repository) {
+        this.repository = repository;
+    }
+
+    public UserProfile getUserProfiles(String username) {
+        return repository.findByUsername(username);
+    }
+
+    public void saveUserProfiles(UserProfile profile) {
+        repository.save(profile);
+    }
+}
