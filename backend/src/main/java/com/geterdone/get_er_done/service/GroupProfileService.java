@@ -19,7 +19,8 @@ public class GroupProfileService {
     // create the group
     public void createGroupProfile(String groupName) {
         //TODO: find a way to figure out what the groupID would be 
-        String newID = "";  //change to integer
+        
+        String newID = repository.findHighestID() +1;  //change to integer
         GroupProfile groupProfile = new GroupProfile(newID,groupName);
         repository.save(groupProfile);
     }

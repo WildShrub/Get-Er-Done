@@ -1,6 +1,11 @@
 package com.geterdone.get_er_done.repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.geterdone.get_er_done.model.GroupProfile;
@@ -27,6 +32,22 @@ public class GroupProfileRepository {
     }
     
     //might need one to produce the next possible groupID
+    public int createGroupProfile(String name) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbc.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                "INSERT INTO example (value) VALUES (?)",
+                Statement.RETURN_GENERATED_KEYS
+            );
+            ps.setString(1, name);
+            return ps;
+        }, keyHolder);
+
+        return keyHolder.getKey().intValue();
+    }
+
+
 
     public void save(GroupProfile groupProfile) {
         String sql = """
