@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,6 +24,9 @@ public class UserTaskService {
     public UserTaskService(UserTaskRepository repository, ObjectMapper mapper) {
         this.repository = repository;
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        mapper.setVisibility(PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
+        mapper.setVisibility(PropertyAccessor.IS_GETTER, JsonAutoDetect.Visibility.NONE);
         this.mapper = mapper;
     }
 
@@ -36,9 +41,9 @@ public class UserTaskService {
     public void addTask(String username, UserTaskItem task) {
         try {
             UserTask userTasks = repository.findByUsername(username);
-            List<UserTaskItem> taskList;
 
-            if (userTasks == null || userTasks.getTasksJson() == null) {
+            List<UserTaskItem> taskList;
+            if (userTasks == null || userTasks.getTasksJson() == null || userTasks.getTasksJson().isEmpty()) {
                 taskList = new ArrayList<>();
                 userTasks = new UserTask();
                 userTasks.setUsername(username);
@@ -50,9 +55,12 @@ public class UserTaskService {
             }
 
             task.setTaskID(UUID.randomUUID().toString());
+
             taskList.add(task);
 
-            userTasks.setTasksJson(mapper.writeValueAsString(taskList));
+            String jsonOut = mapper.writeValueAsString(taskList);
+
+            userTasks.setTasksJson(jsonOut);
             repository.save(userTasks);
 
         } catch (Exception e) {
