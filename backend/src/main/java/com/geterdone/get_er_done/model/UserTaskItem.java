@@ -7,7 +7,6 @@ public class UserTaskItem {
     private String name;
     private boolean completed;
     private int priority;
-    private String dueDate;
 
     public UserTaskItem() {}
 
@@ -41,13 +40,5 @@ public class UserTaskItem {
 
     public void setPriority(int priority) {
         this.priority = priority;
-    }
-
-    public String getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
     }
 }

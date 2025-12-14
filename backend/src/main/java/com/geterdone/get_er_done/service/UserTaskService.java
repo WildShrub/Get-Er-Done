@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.geterdone.get_er_done.model.UserTask;
 import com.geterdone.get_er_done.model.UserTaskItem;
@@ -20,6 +21,7 @@ public class UserTaskService {
 
     public UserTaskService(UserTaskRepository repository, ObjectMapper mapper) {
         this.repository = repository;
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.mapper = mapper;
     }
 
