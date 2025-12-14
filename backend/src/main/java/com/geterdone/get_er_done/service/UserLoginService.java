@@ -20,6 +20,9 @@ public class UserLoginService {
         String hashedPassword = BCrypt.hashpw(user.getPasswordHash(), BCrypt.gensalt());
         user.setPasswordHash(hashedPassword);
         repository.save(user);
+        //user schedule, userprofile, usertask, usergroups are all called
+        //initialize schedule json
+        UserScheduleService.saveUserSchedule()
     }
 
     // Authenticate login
