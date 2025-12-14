@@ -3,9 +3,9 @@ CREATE TABLE userSchedules (
     userSchedule JSON
 );
 
-CREATE TABLE userTasklist (
-    username VARCHAR(50) PRIMARY KEY NOT NULL,
-    userTasklist JSON
+CREATE TABLE user_task_lists (
+    username VARCHAR(50) PRIMARY KEY,
+    tasks_json JSON
 );
 
 CREATE TABLE userProfile (

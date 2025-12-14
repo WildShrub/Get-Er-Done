@@ -22,7 +22,7 @@ public class UserLoginService {
         repository.save(user);
         //user schedule, userprofile, usertask, usergroups are all called
         //initialize schedule json
-        UserScheduleService.saveUserSchedule()
+        //UserScheduleService.saveUserSchedule();
     }
 
     // Authenticate login
