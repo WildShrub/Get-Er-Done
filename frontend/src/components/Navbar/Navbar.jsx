@@ -14,6 +14,9 @@ function Navbar() {
                 <li>
                     <Link className="timeblock-button" to={"/Timeblock"}>Time Block</Link>
                 </li>
+                <li>
+                    <Link className="groups-button" to={"/Group"}>Group Projects</Link>
+                </li>
             </ul>
         </div>
     )
