@@ -67,4 +67,83 @@ public class UserTaskService {
             throw new RuntimeException("Failed to add task", e);
         }
     }
+
+    public void changeCompletionStatus(String username, String taskID, boolean completed) {
+        try {
+            UserTask userTasks = repository.findByUsername(username);
+            if (userTasks == null || userTasks.getTasksJson() == null || userTasks.getTasksJson().isEmpty()) {
+                throw new RuntimeException("No tasks found for user: " + username);
+            }
+
+            List<UserTaskItem> taskList = mapper.readValue(
+                userTasks.getTasksJson(),
+                new TypeReference<List<UserTaskItem>>() {}
+            );
+
+            for (UserTaskItem task : taskList) {
+                if (task.getTaskID().equals(taskID)) {
+                    task.setCompleted(completed);
+                    break;
+                }
+            }
+
+            String jsonOut = mapper.writeValueAsString(taskList);
+            userTasks.setTasksJson(jsonOut);
+            repository.save(userTasks);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to change completion status", e);
+        }
+    }
+
+    public void sortByPriority(String username) {
+        try {
+            UserTask userTasks = repository.findByUsername(username);
+            if (userTasks == null || userTasks.getTasksJson() == null || userTasks.getTasksJson().isEmpty()) {
+                throw new RuntimeException("No tasks found for user: " + username);
+            }
+
+            List<UserTaskItem> taskList = mapper.readValue(
+                userTasks.getTasksJson(),
+                new TypeReference<List<UserTaskItem>>() {}
+            );
+
+            taskList.sort((a, b) -> Integer.compare(b.getPriority(), a.getPriority()));
+
+            String jsonOut = mapper.writeValueAsString(taskList);
+            userTasks.setTasksJson(jsonOut);
+            repository.save(userTasks);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to sort tasks by priority", e);
+        }
+    }
+
+    public void editDescription(String username, String taskID, String newDescription) {
+        try {
+            UserTask userTasks = repository.findByUsername(username);
+            if (userTasks == null || userTasks.getTasksJson() == null || userTasks.getTasksJson().isEmpty()) {
+                throw new RuntimeException("No tasks found for user: " + username);
+            }
+
+            List<UserTaskItem> taskList = mapper.readValue(
+                userTasks.getTasksJson(),
+                new TypeReference<List<UserTaskItem>>() {}
+            );
+
+            for (UserTaskItem task : taskList) {
+                if (task.getTaskID().equals(taskID)) {
+                    task.setDescription(newDescription);
+                    break;
+                }
+            }
+
+            String jsonOut = mapper.writeValueAsString(taskList);
+            userTasks.setTasksJson(jsonOut);
+            repository.save(userTasks);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to edit task description", e);
+        }
+    }
 }
