@@ -17,8 +17,8 @@ public class UserTaskRepository {
 
     public UserTask findByUsername(String username) {
         String sql = """
-            SELECT username, tasks_json
-            FROM user_task_lists
+            SELECT username, tasksJson
+            FROM userTaskLists
             WHERE username = ?
         """;
 
@@ -27,7 +27,7 @@ public class UserTaskRepository {
                 sql,
                 (rs, rowNum) -> new UserTask(
                     rs.getString("username"),
-                    rs.getString("tasks_json")
+                    rs.getString("tasksJson")
                 ),
                 username
             );
@@ -38,9 +38,9 @@ public class UserTaskRepository {
 
     public void save(UserTask tasks) {
         String sql = """
-            INSERT INTO user_task_lists (username, tasks_json)
+            INSERT INTO userTaskList (username, tasksJson)
             VALUES (?, ?)
-            ON DUPLICATE KEY UPDATE tasks_json = VALUES(tasks_json)
+            ON DUPLICATE KEY UPDATE tasksJson = VALUES(tasksJson)
         """;
 
         jdbc.update(sql, tasks.getUsername(), tasks.getTasksJson());

@@ -3,7 +3,7 @@ CREATE TABLE userSchedules (
     userSchedule JSON
 );
 
-CREATE TABLE user_task_lists (
+CREATE TABLE userTaskLists (
     username VARCHAR(50) PRIMARY KEY,
     tasks_json JSON
 );
