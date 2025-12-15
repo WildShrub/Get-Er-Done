@@ -1,0 +1,19 @@
+.Task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 3px solid green;
+}
+
+.Task h1 {
+    width: 351px;
+    height: 82px;
+    color: #000;
+
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
