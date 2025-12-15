@@ -21,4 +21,10 @@ public class GroupScheduleService {
     public void saveGroupSchedule(GroupSchedule schedule) {
         repository.save(schedule);
     }
+
+    public void createGroupSchedule(String groupID) {
+        GroupSchedule schedule = new GroupSchedule();
+        schedule.setGroupID(groupID);
+        repository.save(schedule);
+    }
 }

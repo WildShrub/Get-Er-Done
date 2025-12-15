@@ -31,4 +31,10 @@ public class GroupScheduleController {
     public void saveSchedule(@RequestBody GroupSchedule schedule) {
         service.saveGroupSchedule(schedule);
     }
+
+    // Create a new schedule for a group
+    @PostMapping("/{groupID}/create")
+    public void createSchedule(@PathVariable String groupID) {
+        service.createGroupSchedule(groupID);
+    }
 }

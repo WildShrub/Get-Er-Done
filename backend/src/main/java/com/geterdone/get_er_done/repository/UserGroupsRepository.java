@@ -15,13 +15,13 @@ public class UserGroupsRepository {
     }
 
     public UserGroups findByUsername(String username) {
-        String sql = "SELECT username, groupIDListJson FROM UserGroups WHERE username = ?";
+        String sql = "SELECT username, groupsID FROM UserGroups WHERE username = ?";
 
         return jdbc.queryForObject(
             sql,
             (rs, rowNum) -> new UserGroups(
                 rs.getString("username"),
-                rs.getString("groupIDListJson")
+                rs.getObject("groupsID", java.util.List.class)
             ),
             username
         );
@@ -29,11 +29,11 @@ public class UserGroupsRepository {
 
     public void save(UserGroups userGroups) {
         String sql = """
-            INSERT INTO UserGroups (username, groupIDListJson)
+            INSERT INTO UserGroups (username, groupIDs)
             VALUES (?, ?)
-            ON DUPLICATE KEY UPDATE groupIDListJson = VALUES(groupIDListJson)
+            ON DUPLICATE KEY UPDATE groupIDs = VALUES(groupIDs)
         """;
 
-        jdbc.update(sql, userGroups.getUsername(), userGroups.getGroupIDListJson());
+        jdbc.update(sql, userGroups.getUsername(), userGroups.getGroupsID());
     }
 }

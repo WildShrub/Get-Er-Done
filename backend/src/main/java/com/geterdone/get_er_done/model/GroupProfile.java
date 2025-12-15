@@ -4,7 +4,7 @@ public class GroupProfile {
     private String groupID;
     private String groupName;
 
-    GroupProfile() {}
+    public GroupProfile() {}
 
     public GroupProfile(String groupID, String groupName) {
         this.groupID = groupID;
