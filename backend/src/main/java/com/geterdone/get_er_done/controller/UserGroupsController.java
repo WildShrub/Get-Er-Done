@@ -31,4 +31,16 @@ public class UserGroupsController {
     public void saveUserGroups(@RequestBody UserGroups groups) {
         service.saveUserGroupss(groups);
     }
+
+    // Add a group to user
+    @PostMapping("/{username}/add/{group}")
+    public void addGroup(@PathVariable String username, @PathVariable String group) {
+        service.addGroup(username, group);
+    }
+
+    // Remove a group from user
+    @PostMapping("/{username}/remove/{group}")
+    public void removeGroup(@PathVariable String username, @PathVariable String group) {
+        service.removeGroup(username, group);
+    }
 }

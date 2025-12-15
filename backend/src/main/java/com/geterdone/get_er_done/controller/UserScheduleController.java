@@ -27,8 +27,18 @@ public class UserScheduleController {
     }
 
     // Create/update schedule
-    @PostMapping("/save")
-    public void saveSchedule(@RequestBody UserSchedule schedule) {
+    @PostMapping("/{username}")
+    public void saveSchedule(@PathVariable String username, @RequestBody UserSchedule schedule) {
+        // Ensure the username in the path matches the username in the schedule
+        if (!username.equals(schedule.getUsername())) {
+            throw new IllegalArgumentException("Username in path and schedule do not match");
+        }
         service.saveUserSchedule(schedule);
+    }
+
+    // Create a new schedule for a user
+    @PostMapping("/{username}/create")
+    public void createSchedule(@PathVariable String username) {
+        service.createUserSchedule(username);
     }
 }

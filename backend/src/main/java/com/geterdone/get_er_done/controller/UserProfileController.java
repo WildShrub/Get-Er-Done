@@ -26,9 +26,15 @@ public class UserProfileController {
         return service.getUserProfiles(username);
     }
 
-    // Create/update user profile
+    // Create
     @PostMapping("/save")
     public void saveProfile(@RequestBody UserProfile profile) {
         service.saveUserProfiles(profile);
+    }
+
+    // Update user profile
+    @PostMapping("/{username}/update")
+    public void updateProfile(@PathVariable String username, @RequestBody UserProfile updatedProfile) {
+        service.updateUserProfiles(username, updatedProfile);
     }
 }

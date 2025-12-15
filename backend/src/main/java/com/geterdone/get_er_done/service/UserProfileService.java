@@ -21,4 +21,14 @@ public class UserProfileService {
     public void saveUserProfiles(UserProfile profile) {
         repository.save(profile);
     }
+
+    public void updateUserProfiles(String username, UserProfile updatedProfile) {
+        UserProfile existingProfile = repository.findByUsername(username);
+        if (existingProfile != null) {
+            existingProfile.setUsername(updatedProfile.getUsername());
+            existingProfile.setEmail(updatedProfile.getEmail());
+            existingProfile.setPfp(updatedProfile.getPfp());
+            repository.save(existingProfile);
+        }
+    }
 }

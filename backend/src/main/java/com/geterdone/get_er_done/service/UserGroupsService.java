@@ -21,4 +21,20 @@ public class UserGroupsService {
     public void saveUserGroupss(UserGroups userGroups) {
         repository.save(userGroups);
     }
+
+    public void addGroup(String username, String group) {
+        UserGroups userGroups = repository.findByUsername(username);
+        if (userGroups != null) {
+            userGroups.getGroupsID().add(group);
+            repository.save(userGroups);
+        }
+    }
+
+    public void removeGroup(String username, String group) {
+        UserGroups userGroups = repository.findByUsername(username);
+        if (userGroups != null) {
+            userGroups.getGroupsID().remove(group);
+            repository.save(userGroups);
+        }
+    }
 }

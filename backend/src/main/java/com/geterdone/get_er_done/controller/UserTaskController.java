@@ -25,6 +25,8 @@ public class UserTaskController {
         this.service = service;
     }
 
+
+    // Fetch user tasks
     @GetMapping("/{username}")
     public ResponseEntity<UserTask> getTasks(@PathVariable String username) {
         UserTask tasks = service.getUserTasks(username);
@@ -33,12 +35,14 @@ public class UserTaskController {
             : ResponseEntity.notFound().build();
     }
 
+    // Add new task
     @PostMapping("/{username}/add")
     public ResponseEntity<Void> addTask(@PathVariable String username, @RequestBody UserTaskItem task) {
         service.addTask(username, task);
         return ResponseEntity.ok().build();
     }
 
+    // Update task completion status
     @PatchMapping("/{username}/{taskId}/completion")
     public ResponseEntity<Void> updateCompletionStatus(
         @PathVariable String username,
@@ -49,6 +53,7 @@ public class UserTaskController {
         return ResponseEntity.ok().build();
     }
 
+    // Edit task description
     @PatchMapping("/{username}/{taskId}/description")
     public ResponseEntity<Void> updateDescription(
             @PathVariable String username,
@@ -59,6 +64,7 @@ public class UserTaskController {
         return ResponseEntity.ok().build();
     }
 
+    // Sort tasks by priority
     @PostMapping("/{username}/sort/priority")
     public ResponseEntity<Void> sortByPriority(@PathVariable String username) {
         service.sortByPriority(username);

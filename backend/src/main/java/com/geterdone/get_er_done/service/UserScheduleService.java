@@ -21,4 +21,10 @@ public class UserScheduleService {
     public void saveUserSchedule(UserSchedule schedule) {
         repository.save(schedule);
     }
+
+    public void createUserSchedule(String username) {
+        UserSchedule schedule = new UserSchedule();
+        schedule.setUsername(username);
+        repository.save(schedule);
+    }
 }
