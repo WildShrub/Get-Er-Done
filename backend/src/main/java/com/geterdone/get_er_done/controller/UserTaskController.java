@@ -97,6 +97,9 @@ public class UserTaskController {
         return ResponseEntity.ok().build();
     }
 
-
-
+    //sanity check
+    @PostMapping("/sanity/check")
+    public void test(@RequestBody Object body) {
+        System.out.println(body);
+    }
 }
