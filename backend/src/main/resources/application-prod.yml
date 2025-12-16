@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://prod-db-host:3306/geterdone_db
+    username: ${username}
+    password: ${password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+logging:
+  level:
+    root: WARN
+    com.geterdone: INFO
