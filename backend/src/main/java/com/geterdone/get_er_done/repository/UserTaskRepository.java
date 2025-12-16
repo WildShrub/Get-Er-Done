@@ -40,7 +40,7 @@ public class UserTaskRepository {
 
     public void save(UserTask tasks) {
         String sql = """
-            INSERT INTO userTaskList (username, tasks_json)
+            INSERT INTO userTaskLists (username, tasks_json)
             VALUES (?, ?)
             ON DUPLICATE KEY UPDATE tasks_json = VALUES(tasks_json)
         """;
