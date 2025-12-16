@@ -7,11 +7,21 @@ function Task() {
   const [tasks, setTasks] = useState([]);
   
   const addTask = (task) => {
-    if(task.trim() === "") return;
-    fetch("http://localhost:8080/api/hello")
-      .then(res => res.text())
-      .then(data => setTasks([...tasks, data]));
-    //setTasks ([...tasks, task]);
+    if (task.trim() === "") return;
+
+    fetch("http://localhost:8080/api/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: "josh",
+        task: task
+      })
+    })
+      .then(res => res.json())
+      .then(data => setTasks([...tasks, data.task]))
+      .catch(err => console.error(err));
   };
 
   const removeTask = (index) => {

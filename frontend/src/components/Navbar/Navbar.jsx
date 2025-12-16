@@ -9,6 +9,9 @@ function Navbar() {
                     <Link className="login-button" to="/">Login</Link>
                 </li>
                 <li>
+                    <Link className="Notification" to={"/Notification"}>Notification</Link>
+                </li>
+                <li>
                     <Link className="todo-button" to={"/Todo"}>Todo List</Link>
                 </li>
                 <li>
@@ -16,6 +19,9 @@ function Navbar() {
                 </li>
                 <li>
                     <Link className="groups-button" to={"/Group"}>Group Projects</Link>
+                </li>
+                <li>
+                    <Link className="profile-button" to={"/profile"}>User Profile</Link>
                 </li>
             </ul>
         </div>
