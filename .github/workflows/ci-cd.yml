@@ -1,0 +1,56 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: geterdone_db
+          MYSQL_USER: appuser
+          MYSQL_PASSWORD: 6fuNNyH@h@9
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Build with Maven
+      run: mvn clean package -DskipTests
+
+    - name: Run Tests
+      run: mvn test -Dspring.profiles.active=test
+
+    - name: Build Docker Image
+      run: docker build -t get-er-done .
+
+    - name: Push to Docker Registry
+      # Only if you use Docker Hub or GHCR
+      run: |
+        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        docker tag get-er-done:latest ${{ secrets.DOCKER_USERNAME }}/get-er-done:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/get-er-done:latest
+
+    - name: Deploy to Production
+      # Example SSH deploy or kubectl apply
+      run: echo "Deployment step goes here"
