@@ -1,15 +1,10 @@
 package com.geterdone.get_er_done.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.geterdone.get_er_done.model.GroupProfile;
 import com.geterdone.get_er_done.service.GroupProfileService;
-
+import com.geterdone.get_er_done.dto.task.GroupNameRequest;
 
 @RestController
 @RequestMapping("/api/group/profile")
@@ -27,8 +22,8 @@ public class GroupProfileController {
     }
 
     @PostMapping("/create")
-    public void createGroupProfile(@RequestBody String groupName) {
-        service.createGroupProfile(groupName);
+    public void createGroupProfile(@RequestBody GroupNameRequest request) {
+        service.createGroupProfile(request.getGroupName());
     }
 
     @PostMapping("/rename")
