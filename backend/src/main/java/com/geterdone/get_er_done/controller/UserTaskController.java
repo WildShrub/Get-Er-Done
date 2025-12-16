@@ -53,7 +53,7 @@ public class UserTaskController {
         service.changeCompletionStatus(username, taskId, request.completed());
         return ResponseEntity.ok().build();
     }
-
+    //works
     // Edit task description
     @PatchMapping("/{username}/{taskId}/description")
     public ResponseEntity<Void> updateDescription(
@@ -65,6 +65,7 @@ public class UserTaskController {
         return ResponseEntity.ok().build();
     }
 
+    //works
     // Sort tasks by priority
     @PostMapping("/{username}/sort/priority")
     public ResponseEntity<Void> sortByPriority(@PathVariable String username) {
