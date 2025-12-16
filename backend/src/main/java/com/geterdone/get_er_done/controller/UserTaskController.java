@@ -70,4 +70,33 @@ public class UserTaskController {
         service.sortByPriority(username);
         return ResponseEntity.ok().build();
     }
+
+
+
+    //test api's
+
+
+
+    //pathvariable test
+    @PostMapping("/{username}/test")
+    public ResponseEntity<Void> confirmPostTest(@PathVariable String username) {
+        System.out.println("Test endpoint hit for user: " + username);
+        return ResponseEntity.ok().build();
+    }
+    //simple get test
+    @GetMapping("/test")
+    public ResponseEntity<Void> confirmGetTest() {
+        System.out.println("Test endpoint hit for get");
+        return ResponseEntity.ok().build();
+    }
+    //post with body test
+    @PostMapping("/{username}/add/test")
+    public ResponseEntity<Void> addTaskTest(@PathVariable String username, @RequestBody UserTaskItem task) {
+        System.out.println("request body test endpoint hit");
+        service.addTask(username, task);
+        return ResponseEntity.ok().build();
+    }
+
+
+
 }

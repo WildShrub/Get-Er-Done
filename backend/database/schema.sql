@@ -47,7 +47,7 @@ CREATE TABLE groupUsers (
 CREATE TABLE notifications (
     notificationKey VARCHAR(100) PRIMARY KEY NOT NULL,
     setTime TIMESTAMP NOT NULL,
-    email VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
 );
 
 CREATE INDEX idxTimeStamp ON notifications (timeStamp);

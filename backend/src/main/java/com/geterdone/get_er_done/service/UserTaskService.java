@@ -40,18 +40,24 @@ public class UserTaskService {
 
     public void addTask(String username, UserTaskItem task) {
         try {
+            System.out.println("UserTaskService: Adding task for user: " + username);                                     //for testing 
+            System.out.println("UserTaskService: Retrieving existing tasks...");                                             //for testing   
             UserTask userTasks = repository.findByUsername(username);
 
-            List<UserTaskItem> taskList;
+            List<UserTaskItem> taskList = new ArrayList<>();
             if (userTasks == null || userTasks.getTasksJson() == null || userTasks.getTasksJson().isEmpty()) {
-                taskList = new ArrayList<>();
+                System.out.println("UserTaskService: No existing tasks found, initializing new task list.");                          //for testing
                 userTasks = new UserTask();
                 userTasks.setUsername(username);
             } else {
+                System.out.println("UserTaskService: Existing tasks found, parsing tasks JSON.");                                      //for testing
+
+                //taskList = new ArrayList<>();
                 taskList = mapper.readValue(
                     userTasks.getTasksJson(),
                     new TypeReference<List<UserTaskItem>>() {}
                 );
+                System.out.println("UserTaskService: Tasks JSON parsed successfully.");                                               //for testing
             }
 
             task.setTaskID(UUID.randomUUID().toString());
@@ -64,6 +70,7 @@ public class UserTaskService {
             repository.save(userTasks);
 
         } catch (Exception e) {
+            System.out.println("UserTaskService: Failed to add task for user: " + username);                                               //for testing
             throw new RuntimeException("Failed to add task", e);
         }
     }
