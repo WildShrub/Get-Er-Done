@@ -25,7 +25,7 @@ public class UserTaskController {
         this.service = service;
     }
 
-
+    //works
     // Fetch user tasks
     @GetMapping("/{username}")
     public ResponseEntity<UserTask> getTasks(@PathVariable String username) {
@@ -35,13 +35,14 @@ public class UserTaskController {
             : ResponseEntity.notFound().build();
     }
 
+    //works
     // Add new task
     @PostMapping("/{username}/add")
     public ResponseEntity<Void> addTask(@PathVariable String username, @RequestBody UserTaskItem task) {
         service.addTask(username, task);
         return ResponseEntity.ok().build();
     }
-
+    //works
     // Update task completion status
     @PatchMapping("/{username}/{taskId}/completion")
     public ResponseEntity<Void> updateCompletionStatus(
